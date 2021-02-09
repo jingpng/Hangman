@@ -4,8 +4,8 @@ from words import word_arraylist
 
 # get one word for game
 def get_word():
-    word = random.choice(word_arraylist)
-    return word.upper()
+    word = random.choice(word_arraylist) #get random word from words.py
+    return word.upper() 
 
 
 def play(word):
@@ -19,10 +19,10 @@ def play(word):
     print(word_completion)
 
     while not guessed and tries > 0:
-        guess = input("Guess Letter/Word: ").upper()
+        guess = input("Guess Letter/Word: ").upper() #guessed word
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
-                print("Duplicate Guess: ", guess)
+                print("Duplicate Guess: ", guess) #input is a duplicate
             elif guess not in word:
                 print(guess, "is not in the word")
                 tries -= 1
@@ -31,7 +31,7 @@ def play(word):
                 print(guess, "is in the word")
                 guessed_letters.append(guess)
                 word_as_list = list(word_completion)
-                indices = [i for i, letter in enumerate(word) if letter == guess]
+                indices = [i for i, letter in enumerate(word) if letter == guess] #replace blank with word
                 for index in indices:
                     word_as_list[index] = guess
                 word_completion = "".join(word_as_list)
@@ -140,7 +140,7 @@ def display_hangman(tries):
 def main():
     word = get_word()
     play(word)
-    while input("Play Again? Y OR N ").upper() == "Y":
+    while input("Play Again? Y OR N? ").upper() == "Y":
         word = get_word()
         play(word)
 
